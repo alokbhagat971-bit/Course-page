@@ -1,0 +1,52 @@
+/* ─────────────────────────────────────────────────────────
+   variables.css — Design tokens & CSS custom properties
+───────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+
+:root {
+  /* ── Colors ── */
+  --color-bg:           #04130d;
+  --color-bg-2:         #071a10;
+  --color-card-bg:      rgba(255, 255, 255, 0.04);
+  --color-border:       rgba(255, 255, 255, 0.08);
+  --color-green:        #3ddb7a;
+  --color-yellow:       #f5c518;
+  --color-blue:         #5b8fff;
+  --color-purple:       #bf7aff;
+  --color-text-primary: #ffffff;
+  --color-text-muted:   #99b5a3;
+  --color-text-dim:     #7fa08a;
+
+/* styles/variables.css */
+
+--font-display: 'Outfit', sans-serif;   /* ← change this */
+--font-body:    'Outfit', sans-serif;   /* ← and this */
+
+  /* ── Spacing ── */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 56px;
+  --space-3xl: 80px;
+
+  /* ── Radii ── */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-full: 999px;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.3);
+
+  /* ── Transitions ── */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow:   0.5s ease;
+
+  /* ── Layout ── */
+  --max-width-page: 1280px;
+  --max-width-content: 1200px;
+}

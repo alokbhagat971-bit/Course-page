@@ -1,0 +1,105 @@
+/* ─────────────────────────────────────────────────────────
+   Navbar.css — Sticky navigation bar styles
+───────────────────────────────────────────────────────── */
+
+.nav-root {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(4, 19, 13, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-inner {
+  max-width: var(--max-width-page);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px var(--space-xl);
+}
+
+/* ── Logo ── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo__img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.nav-logo__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-logo__name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--color-text-primary);
+}
+
+.nav-logo__tagline {
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: #7fad8e;
+  text-transform: uppercase;
+}
+
+/* ── Links ── */
+.nav-links {
+  display: flex;
+  gap: 36px;
+}
+
+.nav-links__item {
+  font-size: 13px;
+  font-weight: 500;
+  color: #cccccc;
+  transition: color var(--transition-fast);
+}
+
+.nav-links__item:hover,
+.nav-links__item--active {
+  color: var(--color-text-primary);
+}
+
+.nav-links__item--active {
+  border-bottom: 2px solid var(--color-green);
+  padding-bottom: 2px;
+}
+
+/* ── CTA button ── */
+.nav-cta {
+  background: var(--color-green);
+  color: #03110a;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-cta:hover {
+  background: #5eff9c;
+  transform: translateY(-1px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .nav-links {
+    gap: 20px;
+  }
+
+  .nav-inner {
+    padding: 14px var(--space-md);
+  }
+}
