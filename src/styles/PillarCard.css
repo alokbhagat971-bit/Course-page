@@ -7,17 +7,84 @@
 /* ── Card wrapper ── */
 .card {
   position: relative;
+  isolation: isolate;
+
   border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  background: var(--color-card-bg);
-  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.08) 0%,
+      rgba(255,255,255,0.03) 100%
+    );
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 10px 40px rgba(0,0,0,0.45);
+
+  overflow: visible;
+
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   padding: var(--space-lg);
+
   min-height: 360px;
-  /* transform & box-shadow animated via Framer Motion whileHover */
+
+  transition:
+    background 0.3s ease,
+    border 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card::before {
+  content: "";
+
+  position: absolute;
+  inset: -1px;
+
+  border-radius: inherit;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.10),
+      transparent 45%
+    );
+
+  opacity: 0.9;
+
+  z-index: -1;
+}
+
+.card::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(61,219,122,0.08),
+      transparent 30%,
+      transparent 70%,
+      rgba(91,143,255,0.08)
+    );
+
+  opacity: 0.8;
+
+  pointer-events: none;
 }
 
 /* ── Card top row: number + progress dots ── */
@@ -39,6 +106,8 @@
   display: flex;
   gap: var(--space-xs);
 }
+
+
 
 .card__dot {
   width: 18px;
@@ -112,14 +181,42 @@
   flex-shrink: 0;
 }
 
-/* ── Image slot ── */
 .card__img-wrapper {
+  position: relative;
+
   margin-top: 18px;
+
   border-radius: var(--radius-md);
+
   overflow: hidden;
+
   height: 130px;
+
   background: rgba(255, 255, 255, 0.04);
+
   border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.card__img-wrapper::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      var(--accent) 0%,
+      transparent 70%
+    );
+
+  opacity: 0.18;
+
+  filter: blur(30px);
+
+  z-index: 0;
+
+  pointer-events: none;
 }
 
 .card__img {
@@ -127,6 +224,13 @@
   height: 100%;
   object-fit: cover;
   display: block;
+
+  filter:
+    brightness(1.15)
+    saturate(1.15)
+    contrast(1.08);
+
+  transition: transform 0.5s ease;
 }
 
 /* ── Footer ── */
