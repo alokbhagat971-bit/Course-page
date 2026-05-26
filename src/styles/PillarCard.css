@@ -1,7 +1,6 @@
 /* ─────────────────────────────────────────────────────────
    PillarCard.css — Individual feature card styles
-   Note: hover translateY + box-shadow handled by Framer
-   Motion whileHover in PillarCard.jsx
+   Matched exactly to reference image lighting & glow
 ───────────────────────────────────────────────────────── */
 
 /* ── Card wrapper ── */
@@ -9,82 +8,92 @@
   position: relative;
   isolation: isolate;
 
-  border-radius: var(--radius-lg);
+  border-radius: 18px;
 
+  /* Glassmorphism base - darker, more translucent like the reference */
   background:
     linear-gradient(
-      180deg,
-      rgba(255,255,255,0.08) 0%,
-      rgba(255,255,255,0.03) 100%
+      160deg,
+      rgba(255,255,255,0.07) 0%,
+      rgba(255,255,255,0.03) 50%,
+      rgba(0,0,0,0.15) 100%
     );
 
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
   border: 1px solid rgba(255,255,255,0.10);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.06),
-    0 10px 40px rgba(0,0,0,0.45);
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 12px 48px rgba(0,0,0,0.55),
+    0 2px 8px  rgba(0,0,0,0.35);
 
-  overflow: visible;
+  overflow: hidden;
 
   cursor: pointer;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
-  padding: var(--space-lg);
+  padding: 20px;
 
-  min-height: 360px;
+  min-height: 380px;
 
   transition:
-    background 0.3s ease,
-    border 0.3s ease,
-    box-shadow 0.3s ease;
+    border-color 0.30s ease,
+    box-shadow   0.30s ease,
+    transform    0.30s ease;
+
+  will-change: transform, box-shadow;
 }
 
+/* ── Top accent gradient (the inner glow at card top) ── */
 .card::before {
   content: "";
-
   position: absolute;
-  inset: -1px;
-
-  border-radius: inherit;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(255,255,255,0.10),
-      transparent 45%
-    );
-
-  opacity: 0.9;
-
-  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  border-radius: 18px 18px 0 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% -10%,
+    var(--accent, #3ddb7a) 0%,
+    transparent 65%
+  );
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.35s ease;
 }
 
+/* On hover, brighten the top glow */
+.card:hover::before {
+  opacity: 0.22;
+}
+
+/* ── Diagonal shimmer overlay ── */
 .card::after {
   content: "";
-
   position: absolute;
   inset: 0;
-
-  border-radius: inherit;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(61,219,122,0.08),
-      transparent 30%,
-      transparent 70%,
-      rgba(91,143,255,0.08)
-    );
-
-  opacity: 0.8;
-
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.04) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(255,255,255,0.02) 100%
+  );
   pointer-events: none;
+  z-index: 0;
+}
+
+/* All direct children above the pseudo-elements */
+.card > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Card top row: number + progress dots ── */
@@ -92,78 +101,98 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .card__num {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
 }
 
 .card__dots {
   display: flex;
-  gap: var(--space-xs);
+  gap: 5px;
 }
 
-
-
 .card__dot {
-  width: 18px;
-  height: 4px;
+  width: 20px;
+  height: 3px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.3s;
 }
 
 .card__dot--active {
   background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
 }
 
 /* ── Icon ── */
 .card__icon-wrap {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   color: var(--accent);
-  margin-top: 20px;
+  margin-top: 18px;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 14px rgba(0,0,0,0.3),
+    inset 0 0 12px rgba(255,255,255,0.04);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+/* Icon inner glow on hover */
+.card:hover .card__icon-wrap {
+  border-color: rgba(255,255,255,0.18);
+  box-shadow:
+    0 0 18px rgba(0,0,0,0.3),
+    0 0 12px var(--accent),
+    inset 0 0 12px rgba(255,255,255,0.06);
 }
 
 /* ── Text content ── */
 .card__title {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--color-text-primary);
-  margin-top: var(--space-sm);
+  margin-top: 14px;
   line-height: 1.25;
+  flex-shrink: 0;
 }
 
 .card__desc {
-  font-size: 12.5px;
-  color: #8fac9a;
+  font-size: 12px;
+  color: rgba(143, 172, 154, 0.9);
   font-weight: 300;
   line-height: 1.65;
-  margin-top: 10px;
+  margin-top: 8px;
+  flex-shrink: 0;
 }
 
 /* ── Bullet list ── */
 .card__bullets {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 7px;
+  flex-shrink: 0;
 }
 
 .card__bullet {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 8px;
   font-size: 12px;
   color: #b2c9b9;
   font-weight: 400;
@@ -173,50 +202,51 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: rgba(61, 219, 122, 0.12);
-  border: 1px solid rgba(61, 219, 122, 0.3);
+  background: rgba(61, 219, 122, 0.10);
+  border: 1px solid rgba(61, 219, 122, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
+/* ── Image slot ── */
 .card__img-wrapper {
   position: relative;
-
-  margin-top: 18px;
-
+  margin-top: auto;
+  padding-top: 0;
   border-radius: var(--radius-md);
-
   overflow: hidden;
 
-  height: 130px;
+  /* Fluid — scales with card width at every breakpoint */
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
 
-  background: rgba(255, 255, 255, 0.04);
-
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
 }
 
+/* Accent glow behind image */
 .card__img-wrapper::before {
   content: "";
-
   position: absolute;
   inset: 0;
-
-  background:
-    radial-gradient(
-      circle at center,
-      var(--accent) 0%,
-      transparent 70%
-    );
-
-  opacity: 0.18;
-
-  filter: blur(30px);
-
+  background: radial-gradient(
+    circle at center,
+    var(--accent) 0%,
+    transparent 70%
+  );
+  opacity: 0.15;
+  filter: blur(24px);
   z-index: 0;
-
   pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.card:hover .card__img-wrapper::before {
+  opacity: 0.28;
 }
 
 .card__img {
@@ -224,13 +254,23 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  position: relative;
+  z-index: 1;
 
   filter:
-    brightness(1.15)
-    saturate(1.15)
+    brightness(1.18)
+    saturate(1.20)
     contrast(1.08);
 
-  transition: transform 0.5s ease;
+  transition: transform 0.55s ease, filter 0.35s ease;
+}
+
+.card:hover .card__img {
+  transform: scale(1.06);
+  filter:
+    brightness(1.28)
+    saturate(1.30)
+    contrast(1.10);
 }
 
 /* ── Footer ── */
@@ -238,9 +278,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 18px;
+  margin-top: 14px;
   padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
+  flex-shrink: 0;
 }
 
 .card__explore {
@@ -249,6 +290,12 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+  transition: text-shadow 0.3s ease;
+}
+
+.card:hover .card__explore {
+  text-shadow: 0 0 18px var(--accent);
 }
 
 .card__arrow {
@@ -260,12 +307,57 @@
   align-items: center;
   justify-content: center;
   color: var(--accent);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* ── Hover glow overlay (positioned absolute inside card) ── */
+.card:hover .card__arrow {
+  background: var(--accent);
+  color: #020d07;
+  box-shadow: 0 0 16px var(--accent);
+  transform: translateX(2px);
+}
+
+/* ── Hover glow overlay (Framer AnimatePresence) ── */
 .card__glow {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border-radius: var(--radius-lg);
+  border-radius: 18px;
+  z-index: 0;
+}
+
+/* ── Responsive ── */
+
+/* Tablet: 2-column — slightly tighter image ratio */
+@media (max-width: 900px) and (min-width: 561px) {
+  .card {
+    min-height: unset;
+  }
+
+  .card__img-wrapper {
+    aspect-ratio: 16 / 8;   /* slightly shorter on tablet to save vertical space */
+  }
+}
+
+/* Mobile: 1-column — full width, generous image */
+@media (max-width: 560px) {
+  .card {
+    min-height: unset;
+    padding: 16px;
+  }
+
+  .card__title {
+    font-size: 17px;
+  }
+
+  .card__img-wrapper {
+    /* On mobile the card is full-width, so 16/9 gives a tall image — 
+       use a wider ratio so it feels like a landscape banner, not a square */
+    aspect-ratio: 21 / 9;
+    margin-top: 14px;
+  }
+
+  .card__img {
+    object-position: center 30%;   /* show the interesting top portion of each image */
+  }
 }

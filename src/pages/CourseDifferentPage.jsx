@@ -6,102 +6,92 @@ import {
   Globe,
   Rocket,
   MessageSquare,
-  Gift,
   ArrowRight,
+  Users,
 } from "lucide-react";
 
-import Navbar from "../components/Navbar";
+import Navbar     from "../components/Navbar";
 import PillarCard from "../components/PillarCard";
-import FloatIcon from "../components/FloatIcon";
-
+import FloatIcon  from "../components/FloatIcon";
+import earthBg from "../images/globe.png";
 import { CARDS } from "../data/cards";
+
+// When you have earth-bg.png, uncomment:
+// import earthBg from "../images/earth-bg.png";
 
 import "../styles/global.css";
 import "../styles/CourseDifferentPage.css";
 
-// ─────────────────────────────────────────────────────────
-// Framer Motion variants
-// ─────────────────────────────────────────────────────────
-
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-
+  hidden:  { opacity: 0, y: 30 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-
-    transition: {
-      delay,
-      duration: 0.6,
-      ease: "easeOut",
-    },
+    transition: { delay, duration: 0.65, ease: "easeOut" },
   }),
 };
 
-// ─────────────────────────────────────────────────────────
-// Decorative floating icons
-// ─────────────────────────────────────────────────────────
-
+// Each icon: position on page + stem length going down to the cards
+// stemHeight measured from bottom of icon to top of card grid
 const FLOAT_ICONS = [
   {
-    style: { top: 120, left: "8%" },
-    size: 68,
-    color: "#3ddb7a",
-    icon: Brain,
-    iconSize: 30,
-    duration: 5,
+    // Top-left: Brain — green — large, with long stem
+    style:      { top: 100, left: "6%" },
+    size:       82,
+    color:      "#3ddb7a",
+    icon:       Brain,
+    iconSize:   32,
+    duration:   5.2,
+    stemHeight: 110,
   },
-
   {
-    style: { top: 180, left: "18%" },
-    size: 54,
-    color: "#f5c518",
-    icon: Globe,
-    iconSize: 24,
-    duration: 6.5,
+    // Mid-left: Globe — yellow — smaller, shorter stem
+    style:      { top: 218, left: "15%" },
+    size:       64,
+    color:      "#f5c518",
+    icon:       Globe,
+    iconSize:   26,
+    duration:   6.8,
+    stemHeight: 70,
   },
-
   {
-    style: { top: 110, right: "10%" },
-    size: 64,
-    color: "#5b8fff",
-    icon: Rocket,
-    iconSize: 28,
-    duration: 4.5,
+    // Top-right: Rocket — blue — large, long stem
+    style:      { top: 95, right: "6%" },
+    size:       78,
+    color:      "#5b8fff",
+    icon:       Rocket,
+    iconSize:   30,
+    duration:   4.8,
+    stemHeight: 105,
   },
-
   {
-    style: { top: 200, right: "20%" },
-    size: 50,
-    color: "#bf7aff",
-    icon: MessageSquare,
-    iconSize: 22,
-    duration: 5.8,
+    // Mid-right: MessageSquare — purple — smaller, shorter stem
+    style:      { top: 215, right: "14%" },
+    size:       62,
+    color:      "#bf7aff",
+    icon:       MessageSquare,
+    iconSize:   24,
+    duration:   5.8,
+    stemHeight: 68,
   },
 ];
-
-// ─────────────────────────────────────────────────────────
-// Ambient particles
-// ─────────────────────────────────────────────────────────
 
 const PARTICLES = [
-  { left: "12%", top: "20%", duration: "8s", delay: "0s" },
-  { left: "22%", top: "70%", duration: "11s", delay: "1s" },
-  { left: "35%", top: "40%", duration: "9s", delay: "2s" },
-  { left: "48%", top: "82%", duration: "13s", delay: "1.5s" },
-  { left: "60%", top: "28%", duration: "10s", delay: "0.5s" },
-  { left: "72%", top: "65%", duration: "12s", delay: "3s" },
-  { left: "85%", top: "18%", duration: "9s", delay: "2.2s" },
-  { left: "90%", top: "78%", duration: "14s", delay: "1s" },
-  { left: "15%", top: "50%", duration: "10s", delay: "4s" },
-  { left: "42%", top: "10%", duration: "8s", delay: "2.5s" },
-  { left: "66%", top: "90%", duration: "15s", delay: "0s" },
-  { left: "78%", top: "45%", duration: "11s", delay: "1.8s" },
+  { left: "10%", top: "18%", duration: "8s",  delay: "0s"   },
+  { left: "20%", top: "68%", duration: "11s", delay: "1.2s" },
+  { left: "33%", top: "38%", duration: "9s",  delay: "2s"   },
+  { left: "47%", top: "80%", duration: "13s", delay: "1.5s" },
+  { left: "58%", top: "25%", duration: "10s", delay: "0.5s" },
+  { left: "70%", top: "62%", duration: "12s", delay: "3s"   },
+  { left: "83%", top: "16%", duration: "9s",  delay: "2.2s" },
+  { left: "91%", top: "76%", duration: "14s", delay: "1s"   },
+  { left: "14%", top: "48%", duration: "10s", delay: "4s"   },
+  { left: "40%", top: "8%",  duration: "8s",  delay: "2.5s" },
+  { left: "64%", top: "88%", duration: "15s", delay: "0s"   },
+  { left: "76%", top: "44%", duration: "11s", delay: "1.8s" },
+  { left: "3%",  top: "60%", duration: "9s",  delay: "3.5s" },
+  { left: "52%", top: "55%", duration: "12s", delay: "0.8s" },
 ];
-
-// ─────────────────────────────────────────────────────────
-// Component
-// ─────────────────────────────────────────────────────────
 
 export default function CourseDifferentPage() {
   return (
@@ -110,35 +100,46 @@ export default function CourseDifferentPage() {
 
       <div className="page">
 
-        {/* ── Floating particles ── */}
-        <div className="page-particles">
-          {PARTICLES.map((particle, i) => (
+        {/* ── Background planet arc ──────────────────────────────
+            Place earth-bg.png in src/images/ then replace this
+            div with:
+              <img src={earthBg} alt="" className="page-planet-bg" aria-hidden="true" />
+        ─────────────────────────────────────────────────────── */}
+        <img
+  src={earthBg}
+  alt=""
+  className="page-planet-bg"
+  aria-hidden="true"
+/>
+
+        {/* ── Ambient particles ── */}
+        <div className="page-particles" aria-hidden="true">
+          {PARTICLES.map((p, i) => (
             <span
               key={i}
               style={{
-                left: particle.left,
-                top: particle.top,
-                animationDuration: particle.duration,
-                animationDelay: particle.delay,
+                left: p.left,
+                top:  p.top,
+                animationDuration: p.duration,
+                animationDelay:    p.delay,
               }}
             />
           ))}
         </div>
 
-        {/* ── Floating decorative blobs ── */}
-        {FLOAT_ICONS.map(
-          ({ style, size, color, icon: Icon, iconSize, duration }, i) => (
-            <FloatIcon
-              key={i}
-              style={style}
-              size={size}
-              color={color}
-              duration={duration}
-            >
-              <Icon size={iconSize} />
-            </FloatIcon>
-          )
-        )}
+        {/* ── Floating icon blobs with stems ── */}
+        {FLOAT_ICONS.map(({ style, size, color, icon: Icon, iconSize, duration, stemHeight }, i) => (
+          <FloatIcon
+            key={i}
+            style={style}
+            size={size}
+            color={color}
+            duration={duration}
+            stemHeight={stemHeight}
+          >
+            <Icon size={iconSize} />
+          </FloatIcon>
+        ))}
 
         <div className="page__inner">
 
@@ -148,116 +149,73 @@ export default function CourseDifferentPage() {
             custom={0}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.25 }}
             variants={fadeUp}
           >
-            <span className="header-pill">
-              The IISPPR Difference
-            </span>
+            <span className="header-pill">The IISPPR Difference</span>
 
             <h1 className="header-title">
-              What Makes This
-              <br />
-
-              <span className="header-title__yellow">
-                Course{" "}
-              </span>
-
-              <span className="header-title__green">
-                Different?
-              </span>
+              What Makes This<br />
+              <span className="header-title__yellow">Course </span>
+              <span className="header-title__green">Different?</span>
             </h1>
 
             <p className="header-sub">
-              We go beyond textbooks. Experience industry-relevant learning
-              designed
-              <br />
+              We go beyond textbooks. Experience industry-relevant learning designed<br />
               to build{" "}
-              <strong>
-                real-world thinkers, problem solvers, and future leaders.
-              </strong>
+              <strong>real-world thinkers, problem solvers, and future leaders.</strong>
             </p>
           </motion.div>
 
           {/* ── Cards Grid ── */}
           <div className="cards-grid">
             {CARDS.map((card, i) => (
-              <PillarCard
-                key={card.num}
-                card={card}
-                index={i}
-              />
+              <PillarCard key={card.num} card={card} index={i} />
             ))}
           </div>
 
           {/* ── CTA Bar ── */}
           <motion.div
             className="cta-bar"
-            custom={0.5}
+            custom={0.4}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.2 }}
             variants={fadeUp}
           >
-
-            {/* Left */}
             <div className="cta-bar__left">
-
-              <div
-                className="cta-bar__gift-icon"
-                aria-hidden="true"
-              >
-                <Gift size={26} />
+              <div className="cta-bar__gift-icon" aria-hidden="true">
+                <Users size={24} />
               </div>
-
               <div>
                 <strong className="cta-bar__title">
                   Join the Next Generation of{" "}
-                  <span>
-                    Thinkers &amp; Innovators
-                  </span>
+                  <span>Thinkers &amp; Innovators</span>
                 </strong>
-
                 <p className="cta-bar__subtitle">
                   Enrol today and transform the way you think.
                 </p>
               </div>
             </div>
 
-            {/* Center */}
             <div className="cta-bar__center">
-
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 14,
-                }}
-              >
-
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
                 <div className="cta-bar__image-wrap">
-
                   <img
                     src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=280&q=80"
-                    alt="Group of Indian students collaborating"
+                    alt="Group of students collaborating"
                     className="cta-bar__group-img"
                     loading="lazy"
                   />
-
-                  <div className="cta-bar__image-badge">
-                    +2K
-                  </div>
+                  <div className="cta-bar__image-badge">2K+</div>
                 </div>
-
                 <p className="cta-bar__social-proof">
                   <strong>2,000+ learners</strong>{" "}
                   already transformed their future.
                 </p>
-
               </div>
             </div>
 
-            {/* Right */}
             <a
               href="https://iisppracademy.com/course"
               className="cta-btn"
@@ -265,13 +223,8 @@ export default function CourseDifferentPage() {
               rel="noopener noreferrer"
             >
               Start Your Journey Today
-
-              <ArrowRight
-                size={15}
-                aria-hidden="true"
-              />
+              <ArrowRight size={15} aria-hidden="true" />
             </a>
-
           </motion.div>
 
         </div>

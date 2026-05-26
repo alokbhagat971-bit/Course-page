@@ -1,74 +1,125 @@
 /* ─────────────────────────────────────────────────────────
    CourseDifferentPage.css — Page layout, header, grid,
    floating icons, and CTA bar styles
+   Matched exactly to reference image
 ───────────────────────────────────────────────────────── */
 
+/* ── Page wrapper ── */
 .page {
   min-height: 100vh;
-
-  background:
-  radial-gradient(circle at 20% 20%, rgba(61,219,122,0.18), transparent 30%),
-  radial-gradient(circle at 80% 25%, rgba(91,143,255,0.14), transparent 30%),
-  radial-gradient(circle at 50% 0%, rgba(61,219,122,0.18), transparent 40%),
-  linear-gradient(
-    180deg,
-    #03110b 0%,
-    #04130d 40%,
-    #051812 100%
-  );
-
   position: relative;
   overflow: hidden;
+
+  /* Deep space dark green-black base */
+  background:
+    linear-gradient(
+      180deg,
+      #020d07 0%,
+      #021008 18%,
+      #031410 38%,
+      #041a0e 60%,
+      #031209 80%,
+      #020b06 100%
+    );
 }
 
+/* ── BG planet arc image ── */
+/* 
+   IMPORTANT: Place your background earth/planet arc image at:
+   src/images/earth-bg.png
+   This is the large glowing green planet curve visible at the
+   bottom-center of the reference image. Replace the src below
+   in CourseDifferentPage.jsx with:
+   import earthBg from "../images/earth-bg.png";
+   and set it as the background-image here, or use an <img> tag.
+*/
+.page-planet-bg {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110%;
+  max-width: 1600px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+  /* 
+    When you add the image, uncomment and use:
+    background-image: url('../images/earth-bg.png');
+    background-size: cover;
+    background-position: center top;
+  */
+}
+
+/* ── Ambient radial glows (match reference) ── */
 .page::before {
   content: "";
-
   position: absolute;
   inset: 0;
-
   background:
-    radial-gradient(circle at 20% 30%,
-      rgba(61,219,122,0.16),
-      transparent 32%
+    /* Top-left green bloom */
+    radial-gradient(ellipse 55% 45% at 10% 15%,
+      rgba(25, 180, 80, 0.28),
+      transparent 60%
     ),
-
-    radial-gradient(circle at 80% 20%,
-      rgba(91,143,255,0.14),
-      transparent 28%
+    /* Top-right blue bloom */
+    radial-gradient(ellipse 45% 40% at 90% 12%,
+      rgba(40, 90, 200, 0.20),
+      transparent 55%
     ),
-
-    radial-gradient(circle at 50% 0%,
-      rgba(245,197,24,0.08),
-      transparent 40%
+    /* Center-top faint yellow */
+    radial-gradient(ellipse 40% 30% at 50% 5%,
+      rgba(180, 140, 10, 0.10),
+      transparent 50%
+    ),
+    /* Bottom green planet glow */
+    radial-gradient(ellipse 90% 50% at 50% 105%,
+      rgba(30, 160, 70, 0.55),
+      rgba(15, 100, 45, 0.30) 35%,
+      transparent 65%
+    ),
+    /* Bottom-left warm glow */
+    radial-gradient(ellipse 50% 40% at 5% 85%,
+      rgba(20, 140, 60, 0.22),
+      transparent 55%
+    ),
+    /* Bottom-right purple */
+    radial-gradient(ellipse 40% 35% at 95% 80%,
+      rgba(80, 30, 160, 0.15),
+      transparent 55%
     );
-
-  filter: blur(40px);
-
+  filter: blur(2px);
   pointer-events: none;
+  z-index: 0;
 }
 
-/* ── Cinematic star field ── */
+/* ── Star field ── */
 .page::after {
   content: "";
-
   position: absolute;
   inset: 0;
-
   background-image:
-    radial-gradient(circle at 12% 22%, rgba(61,219,122,0.9) 1.2px, transparent 2px),
-    radial-gradient(circle at 82% 18%, rgba(91,143,255,0.8) 1px, transparent 2px),
-    radial-gradient(circle at 72% 42%, rgba(255,255,255,0.7) 1px, transparent 2px),
-    radial-gradient(circle at 28% 55%, rgba(245,197,24,0.8) 1.2px, transparent 2px),
-    radial-gradient(circle at 90% 70%, rgba(191,122,255,0.9) 1px, transparent 2px),
-    radial-gradient(circle at 15% 80%, rgba(255,255,255,0.6) 1px, transparent 2px),
-    radial-gradient(circle at 45% 15%, rgba(61,219,122,0.5) 1px, transparent 2px),
-    radial-gradient(circle at 65% 78%, rgba(91,143,255,0.5) 1px, transparent 2px);
-
+    radial-gradient(circle at 8%  12%,  rgba(255,255,255,0.85) 1px, transparent 1.5px),
+    radial-gradient(circle at 18% 8%,   rgba(255,255,255,0.60) 1px, transparent 1.5px),
+    radial-gradient(circle at 28% 22%,  rgba(61,219,122,0.90)  1.2px, transparent 2px),
+    radial-gradient(circle at 38% 6%,   rgba(255,255,255,0.50) 0.8px, transparent 1.5px),
+    radial-gradient(circle at 48% 18%,  rgba(255,255,255,0.70) 1px, transparent 1.5px),
+    radial-gradient(circle at 55% 4%,   rgba(91,143,255,0.80)  1.2px, transparent 2px),
+    radial-gradient(circle at 65% 14%,  rgba(255,255,255,0.55) 1px, transparent 1.5px),
+    radial-gradient(circle at 72% 8%,   rgba(255,255,255,0.65) 0.8px, transparent 1.5px),
+    radial-gradient(circle at 82% 20%,  rgba(91,143,255,0.75)  1px, transparent 1.5px),
+    radial-gradient(circle at 90% 10%,  rgba(255,255,255,0.80) 1px, transparent 1.5px),
+    radial-gradient(circle at 95% 25%,  rgba(191,122,255,0.70) 1.2px, transparent 2px),
+    radial-gradient(circle at 5%  35%,  rgba(255,255,255,0.45) 0.8px, transparent 1.5px),
+    radial-gradient(circle at 15% 45%,  rgba(255,255,255,0.55) 1px, transparent 1.5px),
+    radial-gradient(circle at 25% 38%,  rgba(61,219,122,0.50)  1px, transparent 1.5px),
+    radial-gradient(circle at 42% 32%,  rgba(255,255,255,0.40) 0.8px, transparent 1.5px),
+    radial-gradient(circle at 60% 28%,  rgba(245,197,24,0.60)  1px, transparent 1.5px),
+    radial-gradient(circle at 78% 35%,  rgba(255,255,255,0.50) 0.8px, transparent 1.5px),
+    radial-gradient(circle at 88% 42%,  rgba(255,255,255,0.40) 1px, transparent 1.5px);
   pointer-events: none;
-
-  opacity: 0.85;
-
+  opacity: 0.90;
   z-index: 0;
 }
 
@@ -78,7 +129,7 @@
   z-index: 1;
   max-width: var(--max-width-content);
   margin: 0 auto;
-  padding: var(--space-3xl) var(--space-xl) 100px;
+  padding: var(--space-3xl) var(--space-xl) 120px;
 }
 
 /* ── Floating decorative icon blobs ── */
@@ -88,126 +139,165 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   pointer-events: none;
+  z-index: 2;
+}
+
+/* Outer ring (larger faint circle) */
+.float-icon__outer {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+}
+
+/* Main circle */
+.float-icon__circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* The glow stem/connector line going down */
+.float-icon__stem {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+/* Glow pulse ring */
+.float-icon__pulse {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  animation: iconPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes iconPulse {
+  0%   { opacity: 0.0; transform: scale(0.85); }
+  50%  { opacity: 0.5; transform: scale(1.05); }
+  100% { opacity: 0.0; transform: scale(0.85); }
 }
 
 /* ── Section header ── */
 .section-header {
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .header-pill {
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(61, 219, 122, 0.25);
+  border: 1px solid rgba(61, 219, 122, 0.30);
   background: rgba(61, 219, 122, 0.08);
   border-radius: var(--radius-full);
-  padding: 5px 14px;
+  padding: 6px 18px;
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--color-green);
+  box-shadow: 0 0 18px rgba(61,219,122,0.12);
 }
 
 .header-title {
   font-family: var(--font-display);
-
-  font-size: clamp(52px, 7vw, 92px);
-
+  font-size: clamp(48px, 7.5vw, 96px);
   font-weight: 800;
-
-  line-height: 1;
-
+  line-height: 1.0;
   letter-spacing: -3px;
-
   color: var(--color-text-primary);
-
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .header-title__yellow {
   color: var(--color-yellow);
-
   text-shadow:
-  0 0 10px rgba(245,197,24,0.45),
-  0 0 24px rgba(245,197,24,0.22);
+    0 0 8px  rgba(245,197,24,0.60),
+    0 0 20px rgba(245,197,24,0.30),
+    0 0 50px rgba(245,197,24,0.15);
 }
 
 .header-title__green {
   color: var(--color-green);
-  
-
   text-shadow:
-  0 0 12px rgba(61,219,122,0.5),
-  0 0 28px rgba(61,219,122,0.25);
+    0 0 10px rgba(61,219,122,0.65),
+    0 0 26px rgba(61,219,122,0.35),
+    0 0 60px rgba(61,219,122,0.18);
 }
 
 .header-sub {
   font-size: 14px;
   color: var(--color-text-muted);
   font-weight: 300;
-  max-width: 580px;
-  margin: 12px auto 0;
-  line-height: 1.7;
+  max-width: 560px;
+  margin: 14px auto 0;
+  line-height: 1.75;
 }
 
 .header-sub strong {
-  color: var(--color-text-primary);
-  font-weight: 600;
+  /* "real-world thinkers, problem solvers, and future leaders." — green in ref */
+  color: var(--color-green);
+  font-weight: 500;
 }
 
 /* ── Cards grid ── */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-md);
+  gap: 14px;
   margin-top: var(--space-2xl);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .cards-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 560px) {
   .cards-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 
+/* ── CTA Bar ── */
 .cta-bar {
   margin-top: var(--space-2xl);
-
   background:
     linear-gradient(
       90deg,
-      rgba(61,219,122,0.08),
-      rgba(255,255,255,0.04)
+      rgba(61,219,122,0.07) 0%,
+      rgba(255,255,255,0.03) 50%,
+      rgba(61,219,122,0.05) 100%
     );
-
-  border: 1px solid rgba(255,255,255,0.08);
-
+  border: 1px solid rgba(255,255,255,0.09);
   border-radius: var(--radius-lg);
-
-  padding: var(--space-lg) var(--space-xl);
-
+  padding: 22px var(--space-xl);
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: var(--space-lg);
-
   flex-wrap: wrap;
-
   box-shadow:
-    0 0 60px rgba(61,219,122,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+    0 0 40px rgba(61,219,122,0.06),
+    0 0 80px rgba(61,219,122,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  position: relative;
+  z-index: 2;
 }
 
 /* Left block */
@@ -215,27 +305,31 @@
   display: flex;
   align-items: center;
   gap: 18px;
+  flex: 1;
+  min-width: 220px;
 }
 
 .cta-bar__gift-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background: rgba(61, 219, 122, 0.1);
-  border: 1px solid rgba(61, 219, 122, 0.25);
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(61, 219, 122, 0.10);
+  border: 1px solid rgba(61, 219, 122, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-green);
   flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(61,219,122,0.15);
 }
 
 .cta-bar__title {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   display: block;
   color: var(--color-text-primary);
+  line-height: 1.3;
 }
 
 .cta-bar__title span {
@@ -246,28 +340,72 @@
   font-size: 12px;
   color: var(--color-text-dim);
   font-weight: 300;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 /* Centre block */
 .cta-bar__center {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
-/* Group photo */
+/* Avatar stack */
+.cta-bar__avatars {
+  display: flex;
+  align-items: center;
+}
+
+.cta-bar__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(2,13,7,0.9);
+  overflow: hidden;
+  margin-left: -10px;
+  background: #1e4028;
+  flex-shrink: 0;
+}
+
+.cta-bar__avatar:first-child {
+  margin-left: 0;
+}
+
+.cta-bar__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta-bar__avatar-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(2,13,7,0.9);
+  background: var(--color-green);
+  color: #03110a;
+  font-size: 9px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -10px;
+  flex-shrink: 0;
+}
+
+/* Group photo (alternative to avatar stack) */
 .cta-bar__image-wrap {
   position: relative;
   flex-shrink: 0;
 }
 
 .cta-bar__group-img {
-  width: 110px;
-  height: 72px;
+  width: 100px;
+  height: 66px;
   object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid rgba(61, 219, 122, 0.2);
+  border-radius: 10px;
+  border: 1px solid rgba(61, 219, 122, 0.20);
   display: block;
 }
 
@@ -277,18 +415,18 @@
   right: -8px;
   background: var(--color-green);
   color: #03110a;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
-  padding: 3px 8px;
+  padding: 3px 7px;
   border-radius: 999px;
-  border: 2px solid var(--color-bg);
+  border: 2px solid #020d07;
 }
 
 .cta-bar__social-proof {
   font-size: 12px;
   color: #8fac9a;
-  max-width: 180px;
-  line-height: 1.5;
+  max-width: 160px;
+  line-height: 1.55;
 }
 
 .cta-bar__social-proof strong {
@@ -301,81 +439,120 @@
   color: #1a0f00;
   font-size: 13px;
   font-weight: 700;
-  padding: 14px 28px;
+  padding: 15px 30px;
   border-radius: var(--radius-md);
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 8px;
   white-space: nowrap;
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 0 24px rgba(245,197,24,0.30);
 }
 
 .cta-btn:hover {
   background: #ffd84a;
-  transform: translateY(-1px);
-}
-
-/* ── Responsive ── */
-@media (max-width: 700px) {
-  .cta-bar {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .cta-bar__left {
-    flex-direction: column;
-  }
-
-  .page__inner {
-    padding: 60px var(--space-md) 80px;
-  }
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(245,197,24,0.50);
 }
 
 /* ── Floating ambient particles ── */
 .page-particles {
   position: absolute;
   inset: 0;
-
   overflow: hidden;
-
   pointer-events: none;
-
   z-index: 0;
 }
 
 .page-particles span {
   position: absolute;
-
-  width: 4px;
-  height: 4px;
-
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
-
-  background: rgba(255,255,255,0.8);
-
+  background: rgba(255,255,255,0.85);
   box-shadow:
-    0 0 12px rgba(255,255,255,0.8),
-    0 0 24px rgba(61,219,122,0.35);
-
+    0 0 8px  rgba(255,255,255,0.80),
+    0 0 20px rgba(61,219,122,0.40);
   animation: floatParticle linear infinite;
 }
 
 @keyframes floatParticle {
-  from {
-    transform: translateY(0px);
-    opacity: 0;
+  from { transform: translateY(0);     opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 0.8; }
+  to   { transform: translateY(-140px); opacity: 0; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .page__inner {
+    padding: 60px var(--space-lg) 100px;
   }
 
-  20% {
-    opacity: 1;
+  .cta-bar {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 24px var(--space-lg);
   }
 
-  80% {
-    opacity: 1;
+  .cta-bar__left {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: unset;
   }
 
-  to {
-    transform: translateY(-120px);
-    opacity: 0;
+  .cta-bar__center {
+    justify-content: center;
   }
+
+  .cta-bar__social-proof {
+    max-width: 220px;
+    text-align: center;
+  }
+
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .page__inner {
+    padding: 48px var(--space-md) 80px;
+  }
+
+  .header-pill {
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+  }
+
+  .header-title {
+    letter-spacing: -2px;
+    margin-top: 12px;
+  }
+
+  .header-sub {
+    font-size: 13px;
+  }
+}
+
+/* ── Hide floating icons on mobile to prevent title overlap ── */
+@media (max-width: 900px) {
+  .float-icon-wrapper {
+    display: none !important;
+  }
+}
+
+/* ── Performance: promote animated elements to own layer ── */
+.float-icon-wrapper {
+  will-change: transform;
+  contain: layout style;
+}
+
+.page-particles span {
+  will-change: transform, opacity;
 }

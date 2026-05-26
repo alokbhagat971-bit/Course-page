@@ -2,11 +2,11 @@
    variables.css — Design tokens & CSS custom properties
 ───────────────────────────────────────────────────────── */
 
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   /* ── Colors ── */
-  --color-bg:           #04130d;
+  --color-bg:           #020d07;
   --color-bg-2:         #071a10;
   --color-card-bg:      rgba(255, 255, 255, 0.04);
   --color-border:       rgba(255, 255, 255, 0.08);
@@ -18,10 +18,8 @@
   --color-text-muted:   #99b5a3;
   --color-text-dim:     #7fa08a;
 
-/* styles/variables.css */
-
---font-display: 'Outfit', sans-serif;   /* ← change this */
---font-body:    'Outfit', sans-serif;   /* ← and this */
+  --font-display: 'Outfit', sans-serif;
+  --font-body:    'Outfit', sans-serif;
 
   /* ── Spacing ── */
   --space-xs:  4px;

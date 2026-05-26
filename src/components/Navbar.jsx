@@ -5,6 +5,7 @@ const NAV_LINKS = [
   { label: "Home",    href: "#home",    active: false },
   { label: "Why Us",  href: "#whyus",   active: true  },
   { label: "Faculty", href: "#faculty", active: false },
+  { label: "About",   href: "#about",   active: false },
 ];
 
 export default function Navbar() {
@@ -14,13 +15,13 @@ export default function Navbar() {
 
         {/* ── Logo ── */}
         <a href="#home" className="nav-logo" aria-label="IISPPR Home">
-          {/* Replace src with your actual logo filename in /public */}
           <img
-            src="iisppr-logo.png"
+            src="https://iisppracademy.com/logo.png"
             alt="IISPPR logo"
             className="nav-logo__img"
             onError={(e) => { e.currentTarget.style.display = "none"; }}
           />
+          <div className="nav-logo__icon" aria-hidden="true">I</div>
           <div className="nav-logo__text">
             <span className="nav-logo__name">IISPPR</span>
             <span className="nav-logo__tagline">Academic Excellence</span>
@@ -49,8 +50,13 @@ export default function Navbar() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Get Course Now
+          Get Course Now &nbsp;›
         </a>
+
+        {/* ── Mobile hamburger ── */}
+        <button className="nav-hamburger" aria-label="Open menu">
+          <span /><span /><span />
+        </button>
 
       </div>
     </nav>
