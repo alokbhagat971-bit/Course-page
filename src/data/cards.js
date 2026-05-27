@@ -23,8 +23,8 @@ export const CARDS = [
     accent: "#3ddb7a",       // green
     icon: Brain,
     title: "Critical, Not Just Technical",
-    desc: "We look beyond standard code syntaxes and parsing metrics.",
-    bullets: ["Deep conceptual clarity", "Analytical thinking focus"],
+    desc: "We go beyond memorising frameworks and mugging policy documents.",
+    bullets: ["Deep constitutional & governance clarity", "Critical policy analysis focus"],
     img: brain,
     dotActive: 1,
   },
@@ -33,8 +33,8 @@ export const CARDS = [
     accent: "#f5c518",       // yellow/gold
     icon: Globe,
     title: "Global & Local Lens",
-    desc: "Understand global trends and how they impact everyday life.",
-    bullets: ["Global case studies", "Local impact, global insights"],
+    desc: "Understand how the 17 SDGs connect to everyday governance and community impact.",
+    bullets: ["SDG case studies from 50+ countries", "Local policy, global perspective"],
     img: earth,
     dotActive: 2,
   },
@@ -43,8 +43,8 @@ export const CARDS = [
     accent: "#5b8fff",       // blue
     icon: Rocket,
     title: "Practical Skills You Can Use",
-    desc: "Hands-on modules, real datasets, and applied projects.",
-    bullets: ["Real-world applications", "Build portfolio-ready projects"],
+    desc: "Hands-on modules, live policy briefs, and applied SDG project work.",
+    bullets: ["Draft real policy recommendations", "Build a public impact portfolio"],
     img: computer,
     dotActive: 3,
   },
@@ -53,8 +53,8 @@ export const CARDS = [
     accent: "#bf7aff",       // purple
     icon: MessageSquare,
     title: "Learn to Communicate With Impact",
-    desc: "Translate complex data findings into compelling narratives.",
-    bullets: ["Storytelling with data", "Present with confidence"],
+    desc: "Translate complex policy findings into compelling narratives that move people.",
+    bullets: ["Storytelling for social change", "Present to real stakeholders"],
     img: master,
     dotActive: 4,
   },

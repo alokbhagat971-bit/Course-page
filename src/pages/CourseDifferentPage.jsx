@@ -155,15 +155,14 @@ export default function CourseDifferentPage() {
             <span className="header-pill">The IISPPR Difference</span>
 
             <h1 className="header-title">
-              What Makes This<br />
-              <span className="header-title__yellow">Course </span>
-              <span className="header-title__green">Different?</span>
-            </h1>
+  What Makes This<br />
+  <span className="header-title__gradient">Course Different?</span>
+</h1>
 
             <p className="header-sub">
-              We go beyond textbooks. Experience industry-relevant learning designed<br />
+              We go beyond classrooms. Experience policy-relevant learning designed<br />
               to build{" "}
-              <strong>real-world thinkers, problem solvers, and future leaders.</strong>
+              <strong>real-world changemakers, critical thinkers, and future policymakers.</strong>
             </p>
           </motion.div>
 

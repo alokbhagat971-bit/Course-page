@@ -1,6 +1,12 @@
 /* ─────────────────────────────────────────────────────────
    PillarCard.css — Individual feature card styles
-   Matched exactly to reference image lighting & glow
+   Exact text colors from reference image:
+   - Card numbers: #00d4c8 teal
+   - Card titles:  #ffffff white
+   - Card desc:    #8a8a8a grey
+   - Bullets:      #c8c8c8 light grey
+   - Explore More: #e8a020 golden amber
+   - Arrow:        #e8a020 golden amber
 ───────────────────────────────────────────────────────── */
 
 /* ── Card wrapper ── */
@@ -9,19 +15,19 @@
   isolation: isolate;
   overflow: hidden;
 
-  border-radius: 22px;
+  border-radius: 18px;
 
-  /* PREMIUM MANUAL GLASS BACKGROUND */
   background:
     linear-gradient(
       145deg,
-      rgba(16, 20, 18, 0.94) 0%,
-      rgba(14, 16, 15, 0.90) 35%,
-      rgba(10, 12, 11, 0.92) 100%
+      rgba(18, 16, 14, 0.97) 0%,
+      rgba(14, 13, 11, 0.95) 50%,
+      rgba(12, 11, 9,  0.97) 100%
     );
 
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
+  /* ── Box shadow kept exactly as original ── */
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.05),
     inset 0 -1px 0 rgba(255,255,255,0.02),
@@ -44,45 +50,30 @@
   content: "";
   position: absolute;
   inset: 0;
-
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(255,255,255,0.10),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(255,255,255,0.04),
-      transparent 30%
-    );
-
+    radial-gradient(circle at top left,  rgba(255,255,255,0.07), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(255,255,255,0.03), transparent 30%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* On hover, brighten the top glow */
 .card:hover::before {
   opacity: 0.22;
 }
 
 .card::after {
   content: "";
-
   position: absolute;
   inset: 0;
-
   background:
     linear-gradient(
       135deg,
-      rgba(255,255,255,0.08) 0%,
+      rgba(255,255,255,0.06) 0%,
       transparent 18%,
       transparent 55%,
-      rgba(255,255,255,0.03) 100%
+      rgba(255,255,255,0.02) 100%
     );
-
   opacity: .65;
-
   pointer-events: none;
   z-index: 0;
 }
@@ -90,36 +81,21 @@
 .card-glow {
   position: absolute;
   inset: -2px;
-
   border-radius: inherit;
-
-  background:
-    radial-gradient(
-      circle at top,
-      var(--accent),
-      transparent 70%
-    );
-
-  opacity: .12;
-  filter: blur(35px);
-
+  background: radial-gradient(circle at bottom, rgba(232, 160, 32, 0.30), transparent 70%);
+  opacity: .18;
+  filter: blur(40px);
   z-index: -1;
 }
 
-.cards-container::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
+.cards-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(
-      circle at center,
-      rgba(0,0,0,0.08) 0%,
-      rgba(0,0,0,0.48) 72%
-    );
-
-  pointer-events:none;
-  z-index:0;
+    radial-gradient(circle at center, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.48) 72%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* All direct children above the pseudo-elements */
@@ -128,7 +104,7 @@
   z-index: 1;
 }
 
-/* ── Card top row: number + progress dots ── */
+/* ── Card top row ── */
 .card__top-row {
   display: flex;
   justify-content: space-between;
@@ -136,13 +112,14 @@
   flex-shrink: 0;
 }
 
+/* Card numbers — TEAL #00d4c8, exact reference color */
 .card__num {
   font-family: var(--font-display);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: var(--accent);
-  text-shadow: 0 0 10px var(--accent);
+  color: #00d4c8;
+  text-shadow: 0 0 10px rgba(0, 212, 200, 0.50);
 }
 
 .card__dots {
@@ -154,16 +131,16 @@
   width: 20px;
   height: 3px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.10);
   transition: background 0.3s;
 }
 
 .card__dot--active {
-  background: var(--accent);
-  box-shadow: 0 0 6px var(--accent);
+  background: #e8a020;
+  box-shadow: 0 0 6px rgba(232, 160, 32, 0.60);
 }
 
-/* ── Icon ── */
+/* ── Icon wrapper — NOT changed per user request ── */
 .card__icon-wrap {
   width: 42px;
   height: 42px;
@@ -183,7 +160,6 @@
   position: relative;
 }
 
-/* Icon inner glow on hover */
 .card:hover .card__icon-wrap {
   border-color: rgba(255,255,255,0.18);
   box-shadow:
@@ -192,20 +168,21 @@
     inset 0 0 12px rgba(255,255,255,0.06);
 }
 
-/* ── Text content ── */
+/* ── Card title — pure white ── */
 .card__title {
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: #ffffff;
   margin-top: 14px;
   line-height: 1.25;
   flex-shrink: 0;
 }
 
+/* ── Card desc — #8a8a8a grey ── */
 .card__desc {
   font-size: 12px;
-  color: rgba(143, 172, 154, 0.9);
+  color: #8a8a8a;
   font-weight: 300;
   line-height: 1.65;
   margin-top: 8px;
@@ -221,25 +198,28 @@
   flex-shrink: 0;
 }
 
+/* Bullet text — #c8c8c8 light grey */
 .card__bullet {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 12px;
-  color: #b2c9b9;
+  color: #c8c8c8;
   font-weight: 400;
 }
 
+/* Bullet dot — teal/cyan circle matching reference checkmarks */
 .card__bullet-dot {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: rgba(61, 219, 122, 0.10);
-  border: 1px solid rgba(61, 219, 122, 0.28);
+  background: rgba(0, 212, 200, 0.10);
+  border: 1px solid rgba(0, 212, 200, 0.40);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: #00d4c8;
 }
 
 /* ── Image slot ── */
@@ -249,27 +229,19 @@
   padding-top: 0;
   border-radius: var(--radius-md);
   overflow: hidden;
-
-  /* Fluid — scales with card width at every breakpoint */
   width: 100%;
   aspect-ratio: 16 / 9;
   height: auto;
-
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.06);
   flex-shrink: 0;
 }
 
-/* Accent glow behind image */
 .card__img-wrapper::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at center,
-    var(--accent) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle at center, rgba(232, 160, 32, 0.20) 0%, transparent 70%);
   opacity: 0.15;
   filter: blur(24px);
   z-index: 0;
@@ -288,21 +260,13 @@
   display: block;
   position: relative;
   z-index: 1;
-
-  filter:
-    brightness(1.18)
-    saturate(1.20)
-    contrast(1.08);
-
+  filter: brightness(1.18) saturate(1.20) contrast(1.08);
   transition: transform 0.55s ease, filter 0.35s ease;
 }
 
 .card:hover .card__img {
   transform: scale(1.06);
-  filter:
-    brightness(1.28)
-    saturate(1.30)
-    contrast(1.10);
+  filter: brightness(1.28) saturate(1.30) contrast(1.10);
 }
 
 /* ── Footer ── */
@@ -316,40 +280,42 @@
   flex-shrink: 0;
 }
 
+/* "Explore More" — #e8a020 golden amber, exact from reference */
 .card__explore {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--accent);
-  text-shadow: 0 0 10px var(--accent);
+  color: #e8a020;
+  text-shadow: 0 0 10px rgba(232, 160, 32, 0.40);
   transition: text-shadow 0.3s ease;
 }
 
 .card:hover .card__explore {
-  text-shadow: 0 0 18px var(--accent);
+  text-shadow: 0 0 18px rgba(232, 160, 32, 0.70);
 }
 
+/* Arrow circle — #e8a020 golden border */
 .card__arrow {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid var(--accent);
+  border: 1px solid #e8a020;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent);
+  color: #e8a020;
   transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .card:hover .card__arrow {
-  background: var(--accent);
-  color: #020d07;
-  box-shadow: 0 0 16px var(--accent);
+  background: #e8a020;
+  color: #1a0f00;
+  box-shadow: 0 0 16px rgba(232, 160, 32, 0.55);
   transform: translateX(2px);
 }
 
-/* ── Hover glow overlay (Framer AnimatePresence) ── */
+/* ── Hover glow overlay ── */
 .card__glow {
   position: absolute;
   inset: 0;
@@ -359,37 +325,14 @@
 }
 
 /* ── Responsive ── */
-
-/* Tablet: 2-column — slightly tighter image ratio */
 @media (max-width: 900px) and (min-width: 561px) {
-  .card {
-    min-height: unset;
-  }
-
-  .card__img-wrapper {
-    aspect-ratio: 16 / 8;   /* slightly shorter on tablet to save vertical space */
-  }
+  .card { min-height: unset; }
+  .card__img-wrapper { aspect-ratio: 16 / 8; }
 }
 
-/* Mobile: 1-column — full width, generous image */
 @media (max-width: 560px) {
-  .card {
-    min-height: unset;
-    padding: 16px;
-  }
-
-  .card__title {
-    font-size: 17px;
-  }
-
-  .card__img-wrapper {
-    /* On mobile the card is full-width, so 16/9 gives a tall image — 
-       use a wider ratio so it feels like a landscape banner, not a square */
-    aspect-ratio: 21 / 9;
-    margin-top: 14px;
-  }
-
-  .card__img {
-    object-position: center 30%;   /* show the interesting top portion of each image */
-  }
+  .card { min-height: unset; padding: 16px; }
+  .card__title { font-size: 17px; }
+  .card__img-wrapper { aspect-ratio: 21 / 9; margin-top: 14px; }
+  .card__img { object-position: center 30%; }
 }
